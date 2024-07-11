@@ -15,9 +15,17 @@ const routes = [
     },
     {
         method: 'GET',
-        path: '/about',
+        path: '/hello/{name?}',
         handler: (request, h) => {
-            return 'About page';
+            const { name = 'stranger' } = request.params;
+            const {lang} = request.query;
+
+            if(lang === 'id') {
+                return `Hai, ${name}!`;
+            }
+            
+
+            return `Hello, ${name}!`;
         },
     },
     {
